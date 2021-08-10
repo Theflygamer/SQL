@@ -1,0 +1,73 @@
+use master
+create database skoleDBV2
+go
+use skoleDBV2
+go
+
+alter database skoleDBV2
+add filegroup Elev
+go
+
+alter database skoleDBV2
+add file
+(
+	name= 'Elev',
+	filename = 'C:\Program Files\Microsoft SQL Server\skoleDBV2\elev.ndf'
+)
+to filegroup Elev
+
+create table [dbo].[PODetail]
+(
+elevid int NOT NULL Primary Key,
+Fornavn varchar(25) NOT NULL,
+Efternavn varchar(25) NOT NULL,
+Adresse varchar(25) NOT NULL,
+)
+
+ON [elev];
+
+use skoleDBV2
+go 
+
+alter database skoleDBV2
+add filegroup laerer
+go 
+alter database skoleDBV2
+add file
+(
+	name = 'Elev',
+	filename = 'C:\Program Files\Microsoft SQL Server\skoleDBV2\laerer.ndf'
+)
+to filegroup laerer
+
+create table [dbo].[PODetail]
+(
+laererid int  NOT NULL primary key,
+Fornavn varchar(25) NOT NULL,
+Efternavn varchar(25) NOT NULL,
+adresse varchar(25) NOT NULL,
+)
+ON [laerer];
+
+
+
+use skoleDBV2 
+go
+
+alter database skoleDBV2
+add filegroup Klasse
+go
+alter database skoleDBV2
+add file
+(
+	name = 'Klasse',
+	filename = 'C:\Program Files\Microsoft SQL Server\skoleDBV2\klasse.ndf'
+)
+to filegroup Klasse
+
+create table [dbo].[PODetail]
+(
+Klasseid int NOT NULL primary key,
+Klassenavn varchar(2) NOT NULL,
+)
+ON [Klasse];
